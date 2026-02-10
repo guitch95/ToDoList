@@ -8,8 +8,8 @@
 import Foundation
 
 
-struct ItemModel : Identifiable {
-    let id = UUID()
+struct ItemModel : Identifiable, Codable {
+    var id = UUID()
     let title : String
-    let isCompleted : Bool
+    var isCompleted : Bool
 }
