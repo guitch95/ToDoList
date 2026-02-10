@@ -19,7 +19,7 @@ struct NoItemsView: View {
                     .fontWeight(.semibold)
 
             }
-            .padding(.top, 100)
+            .padding(.top, 80)
             .foregroundStyle(.gray.opacity(0.7))
 
         }

@@ -18,18 +18,21 @@ struct AddView: View {
     var body: some View {
         ScrollView {
             VStack {
-                TextField("Type something here...", text: $textFieldText)
-                    .padding(.horizontal)
-                    .frame(height: 55)
-                    .background(
-                        .gray.opacity(0.3),
-                        in: RoundedRectangle(cornerRadius: 10)
-                    )
-                
+                TextField(
+                    "Veuillez saisir quelque chose...",
+                    text: $textFieldText
+                )
+                .padding(.horizontal)
+                .frame(height: 55)
+                .background(
+                    .gray.opacity(0.3),
+                    in: RoundedRectangle(cornerRadius: 10)
+                )
+
                 Button {
                     saveButtonPressed()
                 } label: {
-                    Text("Save".uppercased())
+                    Text("Sauvegarder".uppercased())
                         .frame(height: 40)
                         .font(.headline)
                 }
@@ -39,35 +42,33 @@ struct AddView: View {
             }
             .padding()
         }
-        .navigationTitle("Add an item 🖊️")
+        .navigationTitle("Ajouter une note 🖊️")
         .alert("Important ⚠️⚠️⚠️", isPresented: $showAlert) {
         } message: {
             Text(alertTitle)
 
         }
     }
-        
-        
-        func saveButtonPressed() {
-            if textIsAppropriate() {
-                listViewModel.addItem(title: textFieldText)
-                textFieldText = ""
-                dismiss()
-            }
-            
+
+    func saveButtonPressed() {
+        if textIsAppropriate() {
+            listViewModel.addItem(title: textFieldText)
+            textFieldText = ""
+            dismiss()
         }
-        
-        func textIsAppropriate() -> Bool {
-            if textFieldText.count < 4 {
-                alertTitle =
-                "Your new todo item must be at least 4 characters long. 😱😨😱"
-                showAlert.toggle()
-                return false
-            }
-            return true
-        }
+
     }
 
+    func textIsAppropriate() -> Bool {
+        if textFieldText.count < 4 {
+            alertTitle =
+                "Your new todo item must be at least 4 characters long. 😱😨😱"
+            showAlert.toggle()
+            return false
+        }
+        return true
+    }
+}
 
 #Preview {
     NavigationStack {
