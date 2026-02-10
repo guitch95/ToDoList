@@ -10,29 +10,37 @@ import SwiftUI
 struct ListView: View {
     @Environment(ListViewModel.self) private var listViewModel
     var body: some View {
-        List {
-            ForEach(listViewModel.items) { item in
-                ListRowView(item: item)
-                    .onTapGesture {
-                        withAnimation {
-                            listViewModel.toggleItem(id: item.id)
-                        }
-                        
+        ZStack {
+            if listViewModel.items.isEmpty {
+                NoItemsView()
+            } else {
+                List {
+                    ForEach(listViewModel.items) { item in
+                        ListRowView(item: item)
+                            .onTapGesture {
+                                withAnimation {
+                                    listViewModel.toggleItem(id: item.id)
+                                }
+
+                            }
                     }
+                    .onDelete(perform: listViewModel.removeItem)
+                    .onMove(perform: listViewModel.moveItem)
+                }
+                .listStyle(.plain)
             }
-            .onDelete(perform: listViewModel.removeItem)
-            .onMove(perform: listViewModel.moveItem)
         }
-        .listStyle(.plain)
-        .navigationTitle("Todo List 📝")
+        .navigationTitle("Ma Todo List 📝")
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 EditButton()
             }
 
             ToolbarItem(placement: .topBarTrailing) {
-                NavigationLink("Add") {
+                NavigationLink {
                     AddView()
+                } label: {
+                    Image(systemName: "plus")
                 }
             }
         }
@@ -46,5 +54,5 @@ struct ListView: View {
         ListView()
     }
     .environment(ListViewModel())
-    
+
 }

@@ -9,7 +9,21 @@ import SwiftUI
 
 struct NoItemsView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            VStack {
+                Image(systemName: "checklist")
+                    .font(.system(size: 90))
+                Text("Aucune tâche")
+                    .font(.title)
+                Text("Appuyer sur + pour ajouter une tâche")
+                    .fontWeight(.semibold)
+
+            }
+            .padding(.top, 100)
+            .foregroundStyle(.gray.opacity(0.7))
+
+        }
+
     }
 }
 
