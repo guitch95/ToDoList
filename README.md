@@ -1,7 +1,7 @@
 # 📝 ToDoList App
 
 <div align="center">
-  <img src="todolist.gif" alt="Demo de l'application" width="300"/>
+  <img src="assets/todoslist.gif" alt="Demo de l'application" width="300"/>
 </div>
 
 ## 📖 Description
